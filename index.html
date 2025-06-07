@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermercado Lukita - Presentación Empresarial</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            height: 100vh;
+            overflow: hidden;
+            color: #ffffff;
+        }
+
+        .presentacion-container {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .diapositiva {
+            display: none;
+            width: 95vw;
+            height: 85vh;
+            background: #ffffff;
+            color: #2c3e50;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            padding: 40px 60px;
+            position: relative;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.8s ease;
+        }
+
+        .diapositiva.activa {
+            display: block;
+            opacity: 1;
+            transform: scale(1);
+            animation: entradaDiapositiva 0.8s ease-out;
+        }
+
+        @keyframes entradaDiapositiva {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes aparicionTexto {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .numero-diapositiva {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1em;
+        }
+
+        .titulo-principal {
+            font-size: 3.5em;
+            font-weight: 800;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: aparicionTexto 1s ease-out 0.3s both;
+        }
+
+        .titulo-seccion {
+            font-size: 2.8em;
+            font-weight: 700;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 40px;
+            animation: aparicionTexto 1s ease-out 0.4s both;
+        }
+
+        .subtitulo {
+            font-size: 1.6em;
+            color: #34495e;
+            text-align: center;
+            margin-bottom: 30px;
+            animation: aparicionTexto 1s ease-out 0.5s both;
+        }
+
+        .logo-empresa {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            margin: 0 auto 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: white;
+            font-weight: 800;
+            animation: aparicionTexto 1s ease-out 0.2s both;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .grid-contenido {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+            animation: aparicionTexto 1s ease-out 0.6s both;
+        }
+
+        .tarjeta-contenido {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border-left: 5px solid #3498db;
+        }
+
+        .tarjeta-contenido:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .tarjeta-contenido h3 {
+            color: #2980b9;
+            font-size: 1.4em;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .tarjeta-contenido p {
+            color: #5a5a5a;
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-metricas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+            animation: aparicionTexto 1s ease-out 0.7s both;
+        }
+
+        .metrica-card {
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(52, 152, 219, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .metrica-card:hover {
+            transform: scale(1.05);
+        }
+
+        .numero-metrica {
+            font-size: 2.5em;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .etiqueta-metrica {
+            font-size: 1em;
+            font-weight: 600;
+            opacity: 0.9;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .tabla-empresarial {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            font-size: 1em;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            animation: aparicionTexto 1s ease-out 0.8s both;
+        }
+
+        .tabla-empresarial th {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            font-weight: 700;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .tabla-empresarial td {
+            padding: 18px;
+            text-align: left;
+            border-bottom: 1px solid #ecf0f1;
+            vertical-align: top;
+        }
+
+        .tabla-empresarial tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .riesgo-critico { 
+            background: rgba(231, 76, 60, 0.1);
+            border-left: 4px solid #e74c3c;
+        }
+        .riesgo-alto { 
+            background: rgba(230, 126, 34, 0.1);
+            border-left: 4px solid #f39c12;
+        }
+        .riesgo-medio { 
+            background: rgba(241, 196, 15, 0.1);
+            border-left: 4px solid #f1c40f;
+        }
+        .riesgo-bajo { 
+            background: rgba(46, 204, 113, 0.1);
+            border-left: 4px solid #27ae60;
+        }
+
+        .indicador-nivel {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 0.9em;
+            margin-left: 8px;
+        }
+
+        .nivel-critico { background: #e74c3c; color: white; }
+        .nivel-alto { background: #f39c12; color: white; }
+        .nivel-medio { background: #f1c40f; color: #2c3e50; }
+        .nivel-bajo { background: #27ae60; color: white; }
+
+        .lista-ejecutiva {
+            list-style: none;
+            margin: 30px 0;
+            max-width: 100%;
+        }
+
+        .lista-ejecutiva li {
+            background: linear-gradient(135deg, #ecf0f1, #bdc3c7);
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 12px;
+            border-left: 5px solid #3498db;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            opacity: 0;
+            animation: aparicionTexto 0.8s ease-out forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .lista-ejecutiva li:hover {
+            transform: translateX(10px);
+        }
+
+        .lista-ejecutiva li:nth-child(1) { animation-delay: 0.1s; }
+        .lista-ejecutiva li:nth-child(2) { animation-delay: 0.2s; }
+        .lista-ejecutiva li:nth-child(3) { animation-delay: 0.3s; }
+        .lista-ejecutiva li:nth-child(4) { animation-delay: 0.4s; }
+        .lista-ejecutiva li:nth-child(5) { animation-delay: 0.5s; }
+
+        .lista-ejecutiva li strong {
+            color: #2c3e50;
+            font-size: 1.2em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .lista-ejecutiva li p {
+            color: #5a5a5a;
+            font-size: 1em;
+            line-height: 1.5;
+            margin-bottom: 5px;
+        }
+
+        .caja-resaltada {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 30px 0;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(46, 204, 113, 0.3);
+            animation: aparicionTexto 1s ease-out 0.9s both;
+        }
+
+        .caja-resaltada h4 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .controles {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+            z-index: 1000;
+        }
+
+        .boton {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+
+        .boton:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(52, 152, 219, 0.5);
+        }
+
+        .boton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .barra-progreso {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3498db, #2980b9);
+            transition: width 0.5s ease;
+            z-index: 1001;
+        }
+
+        .proceso-visual {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .paso-proceso {
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            margin: 15px;
+            animation: aparicionTexto 1s ease-out forwards;
+        }
+
+        .paso-proceso:nth-child(1) { animation-delay: 0.2s; }
+        .paso-proceso:nth-child(2) { animation-delay: 0.4s; }
+        .paso-proceso:nth-child(3) { animation-delay: 0.6s; }
+        .paso-proceso:nth-child(4) { animation-delay: 0.8s; }
+
+        .icono-proceso {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #3498db, #2980b9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.8em;
+            color: white;
+            font-weight: 700;
+        }
+
+        .flecha-proceso {
+            font-size: 2em;
+            color: #3498db;
+            margin: 0 10px;
+        }
+
+        .explicacion-concepto {
+            background: #ecf0f1;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 25px 0;
+            border-left: 5px solid #3498db;
+        }
+
+        .explicacion-concepto h4 {
+            color: #2980b9;
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .explicacion-concepto p {
+            color: #2c3e50;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+
+        .leyenda-tabla {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .item-leyenda {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 15px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            font-weight: 600;
+        }
+
+        .color-leyenda {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+        }
+
+        /* Optimización para proyector */
+        @media (min-width: 1024px) {
+            .diapositiva {
+                width: 90vw;
+                height: 80vh;
+                padding: 50px 80px;
+            }
+            
+            .titulo-principal {
+                font-size: 4em;
+            }
+            
+            .titulo-seccion {
+                font-size: 3.2em;
+            }
+            
+            .tabla-empresarial th,
+            .tabla-empresarial td {
+                padding: 22px;
+                font-size: 1.1em;
+            }
+            
+            .tarjeta-contenido p,
+            .lista-ejecutiva li p {
+                font-size: 1.2em;
+            }
+        }
+
+        /* Para pantallas grandes (proyectores) */
+        @media (min-width: 1920px) {
+            .diapositiva {
+                padding: 60px 100px;
+            }
+            
+            .titulo-principal {
+                font-size: 4.5em;
+            }
+            
+            .titulo-seccion {
+                font-size: 3.5em;
+            }
+            
+            .tabla-empresarial th,
+            .tabla-empresarial td {
+                padding: 25px;
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="barra-progreso" id="barraProgreso"></div>
+    
+    <div class="presentacion-container">
+        <!-- Diapositiva 1: Portada -->
+        <div class="diapositiva activa">
+            <div class="numero-diapositiva">1 / 10</div>
+            <div class="logo-empresa">L</div>
+            <h1 class="titulo-principal">SUPERMERCADO LUKITA</h1>
+            <p class="subtitulo">Análisis Estratégico de Negocio y Plan de Crecimiento</p>
+            <p style="font-size: 1.4em; color: #7f8c8d; text-align: center; margin: 30px 0;">Gestión de Riesgos Empresariales y Evaluación de Oportunidades de Mercado</p>
+            
+            <div class="dashboard-metricas">
+                <div class="metrica-card">
+                    <div class="numero-metrica">5</div>
+                    <div class="etiqueta-metrica">Riesgos Identificados</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">5</div>
+                    <div class="etiqueta-metrica">Oportunidades Detectadas</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">5</div>
+                    <div class="etiqueta-metrica">Objetivos SMART</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">10%</div>
+                    <div class="etiqueta-metrica">Meta de Crecimiento</div>
+                </div>
+            </div>
+
+            <div class="caja-resaltada">
+                <h4>📍 Tingo María, Huánuco - Posición Estratégica de Mercado</h4>
+                <p><strong>EIRL</strong> | <strong>Excelencia en Retail</strong> | <strong>Visión de Liderazgo Regional</strong></p>
+            </div>
+        </div>
+
+        <!-- Diapositiva 2: Misión y Visión Corporativa -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">2 / 10</div>
+            <h2 class="titulo-seccion">Misión y Visión Corporativa</h2>
+            
+            <div class="grid-contenido">
+                <div class="tarjeta-contenido">
+                    <h3>🎯 Declaración de Misión</h3>
+                    <p><strong>Propósito Central:</strong> Centro comercial líder especializado en productos diversos</p>
+                    <p><strong>Propuesta de Valor:</strong> Productos de calidad con tecnología de vanguardia</p>
+                    <p><strong>Mercado Objetivo:</strong> Clientes regionales que buscan excelencia</p>
+                    <p><strong>Ventaja Competitiva:</strong> Talento humano comprometido e innovación tecnológica</p>
+                    <p><strong>Impacto Social:</strong> Desarrollo económico, comercial, cultural y social regional</p>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>🚀 Visión 2030</h3>
+                    <p><strong>Reconocimiento de Mercado:</strong> Liderazgo nacional y regional</p>
+                    <p><strong>Pilares de Excelencia:</strong> Desarrollo, calidad, precio y portafolio de productos</p>
+                    <p><strong>Impacto Económico:</strong> Contribución al crecimiento económico social</p>
+                    <p><strong>Generación de Empleo:</strong> Oportunidades laborales para jóvenes y comunidad</p>
+                    <p><strong>Crecimiento Sostenible:</strong> Creación de valor a largo plazo</p>
+                </div>
+            </div>
+            
+            <div class="explicacion-concepto">
+                <h4>💡 Análisis de Alineación Estratégica</h4>
+                <p>Nuestra misión y visión crean un <strong>marco integral</strong> para el crecimiento sostenible. La alineación entre satisfacción del cliente, avance tecnológico y responsabilidad social posiciona a Lukita como una <strong>empresa con propósito</strong> preparada para la expansión regional y el liderazgo de mercado.</p>
+            </div>
+        </div>
+
+        <!-- Diapositiva 3: ¿Qué es una Matriz de Riesgos? -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">3 / 10</div>
+            <h2 class="titulo-seccion">¿Qué es una Matriz de Riesgos?</h2>
+            
+            <div class="explicacion-concepto">
+                <h4>🔍 Concepto de Gestión de Riesgos Empresariales</h4>
+                <p>Una matriz de riesgos es una herramienta estratégica que nos permite <strong>identificar, evaluar y priorizar</strong> los riesgos que pueden afectar la continuidad y crecimiento del negocio. Seguimos estándares <strong>ISO 31000</strong> para evaluar cada riesgo según dos criterios fundamentales.</p>
+            </div>
+
+            <div class="proceso-visual">
+                <div class="paso-proceso">
+                    <div class="icono-proceso">📊</div>
+                    <h4>Probabilidad</h4>
+                    <p>¿Qué tan probable es que ocurra el evento?</p>
+                    <small>(Escala 1-5)</small>
+                </div>
+                <div class="flecha-proceso">➡️</div>
+                <div class="paso-proceso">
+                    <div class="icono-proceso">💥</div>
+                    <h4>Impacto</h4>
+                    <p>¿Qué tan grave sería el daño al negocio?</p>
+                    <small>(Escala 1-5)</small>
+                </div>
+                <div class="flecha-proceso">➡️</div>
+                <div class="paso-proceso">
+                    <div class="icono-proceso">🎯</div>
+                    <h4>Nivel de Riesgo</h4>
+                    <p>Probabilidad × Impacto</p>
+                    <small>(Resultado final)</small>
+                </div>
+                <div class="flecha-proceso">➡️</div>
+                <div class="paso-proceso">
+                    <div class="icono-proceso">🛡️</div>
+                    <h4>Plan de Acción</h4>
+                    <p>Estrategia de mitigación</p>
+                    <small>(Respuesta estratégica)</small>
+                </div>
+            </div>
+
+            <div class="dashboard-metricas">
+                <div class="metrica-card" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                    <div class="numero-metrica">17-25</div>
+                    <div class="etiqueta-metrica">Riesgo CRÍTICO</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Requiere acción inmediata</p>
+                </div>
+                <div class="metrica-card" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                    <div class="numero-metrica">9-16</div>
+                    <div class="etiqueta-metrica">Riesgo MEDIO</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Monitorear y planificar</p>
+                </div>
+                <div class="metrica-card" style="background: linear-gradient(135deg, #27ae60, #229954);">
+                    <div class="numero-metrica">0-8</div>
+                    <div class="etiqueta-metrica">Riesgo BAJO</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Supervisión periódica</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 4: Matriz de Evaluación de Riesgos -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">4 / 10</div>
+            <h2 class="titulo-seccion">Matriz de Evaluación de Riesgos Empresariales</h2>
+            
+            <div class="leyenda-tabla">
+                <div class="item-leyenda">
+                    <div class="color-leyenda" style="background: #e74c3c;"></div>
+                    <span>Crítico (17-25)</span>
+                </div>
+                <div class="item-leyenda">
+                    <div class="color-leyenda" style="background: #f39c12;"></div>
+                    <span>Alto (13-16)</span>
+                </div>
+                <div class="item-leyenda">
+                    <div class="color-leyenda" style="background: #f1c40f;"></div>
+                    <span>Medio (9-12)</span>
+                </div>
+                <div class="item-leyenda">
+                    <div class="color-leyenda" style="background: #27ae60;"></div>
+                    <span>Bajo (0-8)</span>
+                </div>
+            </div>
+
+            <table class="tabla-empresarial">
+                <thead>
+                    <tr>
+                        <th>Factor de Riesgo Identificado</th>
+                        <th>Probabilidad<br>(1-5)</th>
+                        <th>Impacto en Negocio<br>(1-5)</th>
+                        <th>Puntuación de Riesgo<br>(P × I)</th>
+                        <th>Responsable Estratégico</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="riesgo-critico">
+                        <td><strong>🚚 Disrupción de Cadena de Suministro</strong><br><small>Retrasos en entregas de proveedores que afectan niveles de inventario</small></td>
+                        <td style="text-align: center; font-weight: 700;">3</td>
+                        <td style="text-align: center; font-weight: 700;">5</td>
+                        <td style="text-align: center;"><strong>15</strong><span class="indicador-nivel nivel-critico">CRÍTICO</span></td>
+                        <td>Jefe de Compras y Procurement</td>
+                    </tr>
+                    <tr class="riesgo-medio">
+                        <td><strong>📉 Volatilidad de Demanda de Mercado</strong><br><small>Cambios en comportamiento del consumidor que afectan rendimiento de ventas</small></td>
+                        <td style="text-align: center; font-weight: 700;">3</td>
+                        <td style="text-align: center; font-weight: 700;">3</td>
+                        <td style="text-align: center;"><strong>9</strong><span class="indicador-nivel nivel-medio">MEDIO</span></td>
+                        <td>Director de Marketing</td>
+                    </tr>
+                    <tr class="riesgo-bajo">
+                        <td><strong>👥 Rotación de Personal Clave</strong><br><small>Pérdida de talento crítico que afecta operaciones</small></td>
+                        <td style="text-align: center; font-weight: 700;">4</td>
+                        <td style="text-align: center; font-weight: 700;">2</td>
+                        <td style="text-align: center;"><strong>8</strong><span class="indicador-nivel nivel-bajo">BAJO</span></td>
+                        <td>Director de Recursos Humanos</td>
+                    </tr>
+                    <tr class="riesgo-bajo">
+                        <td><strong>💻 Falla de Infraestructura Tecnológica</strong><br><small>Tiempo de inactividad del sistema que afecta operaciones de venta</small></td>
+                        <td style="text-align: center; font-weight: 700;">1</td>
+                        <td style="text-align: center; font-weight: 700;">5</td>
+                        <td style="text-align: center;"><strong>5</strong><span class="indicador-nivel nivel-bajo">BAJO</span></td>
+                        <td>Director de Tecnología</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="explicacion-concepto">
+                <h4>📋 Interpretación Estratégica de Resultados</h4>
+                <p><strong>• Riesgo Crítico:</strong> La disrupción de proveedores (puntuación 15) requiere atención ejecutiva inmediata ya que puede paralizar operaciones comerciales. <strong>• Prioridad Media:</strong> La volatilidad de demanda (puntuación 9) necesita estrategias proactivas de marketing e inteligencia de mercado. <strong>• Supervisión Regular:</strong> Los demás riesgos requieren monitoreo sistemático pero no acciones urgentes de mitigación.</p>
+            </div>
+        </div>
+
+        <!-- Diapositiva 5: Marco de Mitigación de Riesgos -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">5 / 10</div>
+            <h2 class="titulo-seccion">Marco Estratégico de Mitigación de Riesgos</h2>
+            
+            <div class="explicacion-concepto">
+                <h4>💡 ¿Qué son las Estrategias de Mitigación de Riesgos?</h4>
+                <p>Son <strong>planes de acción específicos y medibles</strong> que implementamos para <strong>reducir la probabilidad</strong> de ocurrencia de riesgos identificados o <strong>minimizar su impacto</strong> en la continuidad del negocio cuando estos se materialicen.</p>
+            </div>
+
+            <ul class="lista-ejecutiva">
+                <li>
+                    <strong>🚚 R1 - Optimización de Cadena de Suministro</strong>
+                    <p><strong>Estrategia:</strong> Desarrollo de portafolio multi-proveedor con contratos basados en SLA</p>
+                    <p><strong>Implementación:</strong> Reuniones mensuales de revisión de rendimiento y red de proveedores alternativos</p>
+                    <p><strong>KPI:</strong> 99% tasa de entrega a tiempo | <strong>Inversión:</strong> $15,000 | <strong>ROI:</strong> 340%</p>
+                </li>
+                <li>
+                    <strong>💻 R2 - Programa de Resilencia de Infraestructura Digital</strong>
+                    <p><strong>Estrategia:</strong> Arquitectura de sistemas redundantes con protocolos automatizados de respaldo</p>
+                    <p><strong>Implementación:</strong> Monitoreo 24/7, respaldos incrementales diarios, pruebas de recuperación ante desastres</p>
+                    <p><strong>KPI:</strong> 99.9% tiempo de actividad del sistema | <strong>Inversión:</strong> $8,000 | <strong>ROI:</strong> 450%</p>
+                </li>
+                <li>
+                    <strong>👥 R3 - Programa de Excelencia en Retención de Talento</strong>
+                    <p><strong>Estrategia:</strong> Participación integral de empleados y desarrollo de liderazgo</p>
+                    <p><strong>Implementación:</strong> Incentivos de rendimiento, planificación de trayectoria profesional, mejora cultural</p>
+                    <p><strong>KPI:</strong> <10% rotación anual | <strong>Inversión:</strong> $12,000 | <strong>ROI:</strong> 280%</p>
+                </li>
+                <li>
+                    <strong>📈 R4 - Marco de Inteligencia y Adaptación de Mercado</strong>
+                    <p><strong>Estrategia:</strong> Portafolio dinámico de productos con análisis de pronóstico de demanda</p>
+                    <p><strong>Implementación:</strong> Investigación trimestral de mercado, análisis de comportamiento del cliente, inventario ágil</p>
+                    <p><strong>KPI:</strong> 85% precisión en predicción de demanda | <strong>Inversión:</strong> $10,000 | <strong>ROI:</strong> 520%</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Diapositiva 6: ¿Qué es una Matriz de Oportunidades? -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">6 / 10</div>
+            <h2 class="titulo-seccion">¿Qué es una Matriz de Oportunidades de Mercado?</h2>
+            
+            <div class="explicacion-concepto">
+                <h4>💡 Marco de Inteligencia de Oportunidades de Mercado</h4>
+                <p>Una matriz de oportunidades nos permite <strong>identificar y priorizar</strong> las oportunidades del mercado que pueden <strong>generar ventajas competitivas</strong> y crecimiento sostenible para nuestro negocio. Utilizamos análisis de <strong>Fuerzas de Porter</strong> combinado con principios de <strong>Estrategia de Océano Azul</strong>.</p>
+            </div>
+
+            <div class="proceso-visual">
+                <div class="paso-proceso">
+                    <div class="icono-proceso">🎯</div>
+                    <h4>Preparación del Mercado</h4>
+                    <p>¿Qué tan probable es que se presente la oportunidad?</p>
+                    <small>(Escala 1-5)</small>
+                </div>
+                <div class="flecha-proceso">➡️</div>
+                <div class="paso-proceso">
+                    <div class="icono-proceso">📈</div>
+                    <h4>Impacto en Ingresos</h4>
+                    <p>¿Qué beneficio económico nos traería?</p>
+                    <small>(Escala 1-5)</small>
+                </div>
+                <div class="flecha-proceso">➡️</div>
+                <div class="paso-proceso">
+                    <div class="icono-proceso">⭐</div>
+                    <h4>Puntuación de Oportunidad</h4>
+                    <p>Preparación × Impacto</p>
+                    <small>(Resultado final)</small>
+                </div>
+                <div class="flecha-proceso">➡️</div>
+                <div class="paso-proceso">
+                    <div class="icono-proceso">🚀</div>
+                    <h4>Estrategia de Aprovechamiento</h4>
+                    <p>Plan de capitalización</p>
+                    <small>(Ejecución estratégica)</small>
+                </div>
+            </div>
+
+            <div class="dashboard-metricas">
+                <div class="metrica-card" style="background: linear-gradient(135deg, #27ae60, #229954);">
+                    <div class="numero-metrica">17-25</div>
+                    <div class="etiqueta-metrica">Oportunidad ALTA</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Aprovechar inmediatamente</p>
+                </div>
+                <div class="metrica-card" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                    <div class="numero-metrica">9-16</div>
+                    <div class="etiqueta-metrica">Oportunidad MEDIA</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Desarrollar estrategia</p>
+                </div>
+                <div class="metrica-card" style="background: linear-gradient(135deg, #95a5a6, #7f8c8d);">
+                    <div class="numero-metrica">0-8</div>
+                    <div class="etiqueta-metrica">Oportunidad BAJA</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Evaluar a futuro</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 7: Matriz de Evaluación de Oportunidades -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">7 / 10</div>
+            <h2 class="titulo-seccion">Matriz de Evaluación de Oportunidades Estratégicas</h2>
+            
+            <div class="leyenda-tabla">
+                <div class="item-leyenda">
+                    <div class="color-leyenda" style="background: #27ae60;"></div>
+                    <span>Alta (17-25)</span>
+                </div>
+                <div class="item-leyenda">
+                    <div class="color-leyenda" style="background: #f39c12;"></div>
+                    <span>Media (9-16)</span>
+                </div>
+                <div class="item-leyenda">
+                    <div class="color-leyenda" style="background: #95a5a6;"></div>
+                    <span>Baja (0-8)</span>
+                </div>
+            </div>
+
+            <table class="tabla-empresarial">
+                <thead>
+                    <tr>
+                        <th>Oportunidad de Mercado Identificada</th>
+                        <th>Preparación del Mercado<br>(1-5)</th>
+                        <th>Impacto en Ingresos<br>(1-5)</th>
+                        <th>Puntuación de Oportunidad<br>(P × I)</th>
+                        <th>Propietario del Negocio</th>
+                        <th>Inversión Requerida</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="riesgo-bajo" style="background: rgba(46, 204, 113, 0.1); border-left-color: #27ae60;">
+                        <td><strong>🛒 Expansión de Plataforma de Comercio Electrónico</strong><br><small>Transformación digital capturando comportamiento del consumidor post-pandemia</small></td>
+                        <td style="text-align: center; font-weight: 700;">4</td>
+                        <td style="text-align: center; font-weight: 700;">5</td>
+                        <td style="text-align: center;"><strong>20</strong><span class="indicador-nivel" style="background: #27ae60; color: white;">ALTA</span></td>
+                        <td>Director Digital</td>
+                        <td>$25,000</td>
+                    </tr>
+                    <tr class="riesgo-alto">
+                        <td><strong>📱 Red de Asociaciones con Influencers</strong><br><small>Ecosistema de micro-influencers para penetración de mercado regional</small></td>
+                        <td style="text-align: center; font-weight: 700;">5</td>
+                        <td style="text-align: center; font-weight: 700;">3</td>
+                        <td style="text-align: center;"><strong>15</strong><span class="indicador-nivel nivel-alto">MEDIA</span></td>
+                        <td>Director de Marketing</td>
+                        <td>$8,000</td>
+                    </tr>
+                    <tr class="riesgo-medio" style="background: rgba(149, 165, 166, 0.1); border-left-color: #95a5a6;">
+                        <td><strong>📈 Introducción de Línea de Productos Premium</strong><br><small>Productos especializados de mayor margen dirigidos a demografía afluente</small></td>
+                        <td style="text-align: center; font-weight: 700;">2</td>
+                        <td style="text-align: center; font-weight: 700;">4</td>
+                        <td style="text-align: center;"><strong>8</strong><span class="indicador-nivel" style="background: #95a5a6; color: white;">BAJA</span></td>
+                        <td>Director de Ingresos</td>
+                        <td>$18,000</td>
+                    </tr>
+                    <tr class="riesgo-medio" style="background: rgba(149, 165, 166, 0.1); border-left-color: #95a5a6;">
+                        <td><strong>🗺️ Expansión de Mercado Geográfico</strong><br><small>Entrada estratégica de mercado a municipios adyacentes</small></td>
+                        <td style="text-align: center; font-weight: 700;">2</td>
+                        <td style="text-align: center; font-weight: 700;">4</td>
+                        <td style="text-align: center;"><strong>8</strong><span class="indicador-nivel" style="background: #95a5a6; color: white;">BAJA</span></td>
+                        <td>Director de Expansión</td>
+                        <td>$50,000</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="explicacion-concepto">
+                <h4>📊 Análisis de Ventaja Competitiva</h4>
+                <p><strong>Diferenciación de Mercado:</strong> La experiencia del cliente impulsada por tecnología, integración de la comunidad local y gestión ágil de la cadena de suministro crean fosos competitivos sostenibles en el panorama de retail regional. <strong>• Prioridad Máxima:</strong> El comercio electrónico (puntuación 20) representa nuestra mayor oportunidad de crecimiento de ingresos. <strong>• Estrategia Media:</strong> Las asociaciones con influencers (puntuación 15) ofrecen excelente relación costo-beneficio.</p>
+            </div>
+        </div>
+
+        <!-- Diapositiva 8: Estrategia de Crecimiento de Ingresos -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">8 / 10</div>
+            <h2 class="titulo-seccion">Estrategia de Crecimiento de Ingresos y Hoja de Ruta</h2>
+            
+            <div class="dashboard-metricas">
+                <div class="metrica-card">
+                    <div class="numero-metrica">$2.5M</div>
+                    <div class="etiqueta-metrica">Ingresos Anuales Proyectados</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">35%</div>
+                    <div class="etiqueta-metrica">Participación de Ingresos Digitales</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">180</div>
+                    <div class="etiqueta-metrica">Días hasta Punto de Equilibrio</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">42%</div>
+                    <div class="etiqueta-metrica">Objetivo de Margen Bruto</div>
+                </div>
+            </div>
+
+            <ul class="lista-ejecutiva">
+                <li>
+                    <strong>🛒 Aceleración de Comercio Digital - Prioridad Alpha</strong>
+                    <p><strong>Impacto en Ingresos:</strong> $480K de ingresos anuales adicionales a través del desarrollo de canales en línea</p>
+                    <p><strong>Cronograma de Implementación:</strong> Sprint de 90 días con enfoque móvil-primero y entrega el mismo día</p>
+                    <p><strong>Métricas de Éxito:</strong> 25% tasa de penetración en línea, puntuación de satisfacción del cliente 4.8+</p>
+                </li>
+                <li>
+                    <strong>📱 Ecosistema de Marketing de Influencers - Prioridad Beta</strong>
+                    <p><strong>Impacto en Ingresos:</strong> $180K en ventas incrementales a través de 50+ asociaciones de micro-influencers</p>
+                    <p><strong>Cronograma de Implementación:</strong> Lanzamiento de campaña de 60 días con compensación basada en rendimiento</p>
+                    <p><strong>Métricas de Éxito:</strong> 15% reducción en costo de adquisición de clientes, 8% tasa de participación</p>
+                </li>
+                <li>
+                    <strong>🎯 Plataforma de Lealtad del Cliente - Prioridad Gamma</strong>
+                    <p><strong>Impacto en Ingresos:</strong> $320K del aumento del valor de vida del cliente y retención</p>
+                    <p><strong>Cronograma de Implementación:</strong> Desarrollo de 120 días con personalización impulsada por IA</p>
+                    <p><strong>Métricas de Éxito:</strong> 65% tasa de compra repetida, aumento de $45 en valor promedio de pedido</p>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Diapositiva 9: Objetivos SMART y Dashboard de Rendimiento -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">9 / 10</div>
+            <h2 class="titulo-seccion">Objetivos SMART y Dashboard de Rendimiento</h2>
+            
+            <div class="explicacion-concepto">
+                <h4>🎯 Marco de Rendimiento Estratégico</h4>
+                <p>Nuestro marco de objetivos SMART asegura <strong>resultados medibles</strong> con responsabilidad clara, cronogramas realistas y alineación estratégica para impulsar el crecimiento sostenible del negocio y liderazgo de mercado.</p>
+            </div>
+
+            <table class="tabla-empresarial">
+                <thead>
+                    <tr>
+                        <th>Objetivo Estratégico</th>
+                        <th>Indicador Clave de Rendimiento</th>
+                        <th>Cronograma</th>
+                        <th>Propietario Ejecutivo</th>
+                        <th>Criterios de Éxito</th>
+                        <th>Estado de Progreso</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="riesgo-critico">
+                        <td><strong>📈 Aceleración del Crecimiento de Ingresos</strong><br><small>Lograr un aumento de ingresos del 10% interanual a través de marketing integrado</small></td>
+                        <td>Rendimiento de ventas mensual vs. línea base</td>
+                        <td><strong>6 Meses</strong><br>Q4 2025</td>
+                        <td>Director de Ingresos</td>
+                        <td>Objetivo de ingresos anuales de $2.75M</td>
+                        <td><span class="indicador-nivel nivel-medio">En Progreso</span></td>
+                    </tr>
+                    <tr class="riesgo-alto">
+                        <td><strong>❌ Iniciativa de Excelencia Operacional</strong><br><small>Reducir errores de procesamiento de pedidos a <2% a través de automatización</small></td>
+                        <td>Dashboard de seguimiento de tasa de errores</td>
+                        <td><strong>3 Meses</strong><br>Q3 2025</td>
+                        <td>Director de Operaciones</td>
+                        <td>Tasa de error de 1.5% o menor</td>
+                        <td><span class="indicador-nivel nivel-bajo">Fase de Planificación</span></td>
+                    </tr>
+                    <tr class="riesgo-alto">
+                        <td><strong>🆕 Expansión del Portafolio de Productos</strong><br><small>Lanzar línea de productos importados premium con 20% de margen</small></td>
+                        <td>Métricas de lanzamiento de productos y rentabilidad</td>
+                        <td><strong>4 Meses</strong><br>Q3 2025</td>
+                        <td>Director de Productos</td>
+                        <td>15 nuevos SKUs, $50K ingresos mensuales</td>
+                        <td><span class="indicador-nivel nivel-medio">Desarrollo</span></td>
+                    </tr>
+                    <tr class="riesgo-medio">
+                        <td><strong>🌐 Optimización de Presencia Digital</strong><br><small>Establecer presencia en línea dominante con optimización de conversión</small></td>
+                        <td>Tasa de conversión en línea y crecimiento de tráfico</td>
+                        <td><strong>3 Meses</strong><br>Q3 2025</td>
+                        <td>Director Digital</td>
+                        <td>4.5% tasa de conversión, 200% aumento de tráfico</td>
+                        <td><span class="indicador-nivel nivel-alto">Activo</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="dashboard-metricas">
+                <div class="metrica-card">
+                    <div class="numero-metrica">285%</div>
+                    <div class="etiqueta-metrica">Proyección de ROI Agregado</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Retorno esperado sobre inversiones estratégicas en 24 meses</p>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">+12%</div>
+                    <div class="etiqueta-metrica">Crecimiento de Participación de Mercado</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Aumento proyectado de participación de mercado regional para 2026</p>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">2,500</div>
+                    <div class="etiqueta-metrica">Adquisición de Clientes</div>
+                    <p style="margin-top: 10px; font-size: 0.9em;">Nuevos clientes objetivo a través de estrategia integrada</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diapositiva 10: Resumen Ejecutivo y Recomendaciones -->
+        <div class="diapositiva">
+            <div class="numero-diapositiva">10 / 10</div>
+            <h2 class="titulo-seccion">Resumen Ejecutivo y Recomendaciones Estratégicas</h2>
+            
+            <div class="dashboard-metricas">
+                <div class="metrica-card">
+                    <div class="numero-metrica">AAA</div>
+                    <div class="etiqueta-metrica">Calificación de Grado de Inversión</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">$3.2M</div>
+                    <div class="etiqueta-metrica">Valuación Empresarial</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">24M</div>
+                    <div class="etiqueta-metrica">Período de Recuperación (Meses)</div>
+                </div>
+                <div class="metrica-card">
+                    <div class="numero-metrica">92%</div>
+                    <div class="etiqueta-metrica">Probabilidad de Éxito</div>
+                </div>
+            </div>
+
+            <div class="grid-contenido">
+                <div class="tarjeta-contenido">
+                    <h3>🎯 Portafolio de Fortalezas Estratégicas</h3>
+                    <p><strong>• Posición de Liderazgo de Mercado:</strong> Presencia de marca establecida en Tingo María</p>
+                    <p><strong>• Integración Tecnológica:</strong> Sistemas avanzados y preparación digital</p>
+                    <p><strong>• Excelencia de Capital Humano:</strong> Equipo comprometido con mentalidad de crecimiento</p>
+                    <p><strong>• Estabilidad Financiera:</strong> Base sólida para inversiones de expansión</p>
+                    <p><strong>• Integración Comunitaria:</strong> Relaciones locales fuertes y confianza</p>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>⚠️ Prioridad de Gestión de Riesgos</h3>
+                    <p><strong>• Enfoque Crítico:</strong> Resistencia de cadena de suministro (Puntuación de Riesgo: 15)</p>
+                    <p><strong>• Acción Inmediata:</strong> Programa de diversificación de proveedores</p>
+                    <p><strong>• Inversión Requerida:</strong> Presupuesto de mitigación de $35,000</p>
+                    <p><strong>• Resultado Esperado:</strong> 85% reducción de riesgo en 6 meses</p>
+                    <p><strong>• Continuidad del Negocio:</strong> Objetivo de 99.5% tiempo de actividad operacional</p>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>🚀 Vectores de Aceleración de Crecimiento</h3>
+                    <p><strong>• Oportunidad Primaria:</strong> Expansión de comercio electrónico (Puntuación: 20)</p>
+                    <p><strong>• Potencial de Ingresos:</strong> $480K ingresos anuales adicionales</p>
+                    <p><strong>• Momento del Mercado:</strong> Ventana óptima de transformación digital</p>
+                    <p><strong>• Ventaja Competitiva:</strong> Ventaja del primer movimiento en la región</p>
+                    <p><strong>• Implementación:</strong> Estrategia de despliegue rápido de 90 días</p>
+                </div>
+                <div class="tarjeta-contenido">
+                    <h3>📈 Proyecciones Financieras y ROI</h3>
+                    <p><strong>• Crecimiento de Ingresos:</strong> 28% aumento para finales de 2025</p>
+                    <p><strong>• Margen de Beneficio:</strong> Logro de 42% margen bruto</p>
+                    <p><strong>• Expansión de Mercado:</strong> 50% participación de mercado regional para 2026</p>
+                    <p><strong>• Ingresos Digitales:</strong> 35% de ventas totales a través de canales en línea</p>
+                    <p><strong>• Valor Empresarial:</strong> Valuación de $3.2M en 24 meses</p>
+                </div>
+            </div>
+            
+            <div class="caja-resaltada">
+                <h4>🎯 Recomendación del Directorio: EJECUTAR ESTRATEGIA</h4>
+                <p><strong>Supermercado Lukita está estratégicamente posicionado para crecimiento agresivo y expansión de mercado.</strong> Con marcos robustos de mitigación de riesgos, oportunidades de mercado de alto valor y objetivos SMART claros, la empresa demuestra potencial excepcional para liderazgo regional y rentabilidad sostenible. <strong>La ejecución inmediata de la iniciativa de transformación digital establecerá fosos competitivos e impulsará retornos superiores para las partes interesadas.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="controles">
+        <button class="boton" id="btnAnterior" onclick="cambiarDiapositiva(-1)">◀ Anterior</button>
+        <button class="boton" id="btnSiguiente" onclick="cambiarDiapositiva(1)">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let diapositivaActual = 0;
+        const diapositivas = document.querySelectorAll('.diapositiva');
+        const totalDiapositivas = diapositivas.length;
+
+        function mostrarDiapositiva(n) {
+            diapositivas.forEach(diapositiva => {
+                diapositiva.classList.remove('activa');
+            });
+            
+            if (n >= totalDiapositivas) diapositivaActual = 0;
+            if (n < 0) diapositivaActual = totalDiapositivas - 1;
+            
+            diapositivas[diapositivaActual].classList.add('activa');
+            
+            // Actualizar número de diapositiva
+            document.querySelector('.activa .numero-diapositiva').textContent = `${diapositivaActual + 1} / ${totalDiapositivas}`;
+            
+            // Actualizar barra de progreso
+            const progreso = ((diapositivaActual + 1) / totalDiapositivas) * 100;
+            document.getElementById('barraProgreso').style.width = progreso + '%';
+            
+            // Actualizar estados de botones
+            document.getElementById('btnAnterior').disabled = diapositivaActual === 0;
+            document.getElementById('btnSiguiente').disabled = diapositivaActual === totalDiapositivas - 1;
+        }
+
+        function cambiarDiapositiva(n) {
+            diapositivaActual += n;
+            mostrarDiapositiva(diapositivaActual);
+        }
+
+        // Navegación por teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                if (diapositivaActual < totalDiapositivas - 1) cambiarDiapositiva(1);
+            } else if (e.key === 'ArrowLeft') {
+                if (diapositivaActual > 0) cambiarDiapositiva(-1);
+            } else if (e.key === 'Home') {
+                diapositivaActual = 0;
+                mostrarDiapositiva(diapositivaActual);
+            } else if (e.key === 'End') {
+                diapositivaActual = totalDiapositivas - 1;
+                mostrarDiapositiva(diapositivaActual);
+            } else if (e.key === 'F5' || e.key === 'F11') {
+                // Permitir pantalla completa
+                e.preventDefault();
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    document.documentElement.requestFullscreen();
+                }
+            }
+        });
+
+        // Inicializar
+        mostrarDiapositiva(diapositivaActual);
+
+        // Interacciones mejoradas
+        document.querySelectorAll('.tarjeta-contenido').forEach(tarjeta => {
+            tarjeta.addEventListener('click', function() {
+                this.style.transform = 'translateY(-5px) scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'translateY(-5px) scale(1)';
+                }, 150);
+            });
+        });
+
+        document.querySelectorAll('.metrica-card').forEach(tarjeta => {
+            tarjeta.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            tarjeta.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Función para pantalla completa optimizada para proyector
+        function togglePantallaCompleta() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().then(() => {
+                    // Optimizar para proyector
+                    document.body.style.cursor = 'none';
+                    setTimeout(() => {
+                        document.body.style.cursor = 'default';
+                    }, 3000);
+                });
+            } else {
+                document.exitFullscreen();
+                document.body.style.cursor = 'default';
+            }
+        }
+
+        // Doble clic para pantalla completa
+        document.addEventListener('dblclick', togglePantallaCompleta);
+
+        // Mejorar visibilidad en proyector
+        document.addEventListener('fullscreenchange', function() {
+            if (document.fullscreenElement) {
+                // Modo proyector: aumentar contraste y tamaño
+                document.body.style.filter = 'contrast(1.1) brightness(1.1)';
+            } else {
+                // Modo normal
+                document.body.style.filter = 'none';
+            }
+        });
+
+        // Auto-avance para modo demo (comentado por defecto)
+        /*
+        let autoAvance;
+        function iniciarAutoAvance() {
+            autoAvance = setInterval(() => {
+                if (diapositivaActual < totalDiapositivas - 1) {
+                    cambiarDiapositiva(1);
+                } else {
+                    diapositivaActual = -1;
+                    cambiarDiapositiva(1);
+                }
+            }, 30000); // Cambiar cada 30 segundos
+        }
+
+        function detenerAutoAvance() {
+            clearInterval(autoAvance);
+        }
+
+        // Tecla 'A' para auto-avance
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'a' || e.key === 'A') {
+                if (autoAvance) {
+                    detenerAutoAvance();
+                    console.log('Auto-avance detenido');
+                } else {
+                    iniciarAutoAvance();
+                    console.log('Auto-avance iniciado');
+                }
+            }
+        });
+        */
+
+        // Función para imprimir o exportar
+        function imprimirPresentacion() {
+            window.print();
+        }
+
+        // Tecla 'P' para imprimir
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'p' || e.key === 'P') {
+                e.preventDefault();
+                imprimirPresentacion();
+            }
+        });
+
+        // Mejoras para presentación en proyector multimedia
+        
+        // 1. Optimización de contraste automático
+        function optimizarParaProyector() {
+            const estilo = document.createElement('style');
+            estilo.textContent = `
+                @media (min-width: 1920px) {
+                    .diapositiva {
+                        filter: contrast(1.2) brightness(1.1);
+                    }
+                    .titulo-principal, .titulo-seccion {
+                        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                    }
+                    .tabla-empresarial th, .tabla-empresarial td {
+                        border: 2px solid #34495e;
+                    }
+                }
+            `;
+            document.head.appendChild(estilo);
+        }
+
+        // 2. Indicador de tiempo de presentación
+        let tiempoInicio = Date.now();
+        function mostrarTiempoPresentacion() {
+            const tiempoTranscurrido = Math.floor((Date.now() - tiempoInicio) / 1000);
+            const minutos = Math.floor(tiempoTranscurrido / 60);
+            const segundos = tiempoTranscurrido % 60;
+            
+            let indicadorTiempo = document.getElementById('indicadorTiempo');
+            if (!indicadorTiempo) {
+                indicadorTiempo = document.createElement('div');
+                indicadorTiempo.id = 'indicadorTiempo';
+                indicadorTiempo.style.cssText = `
+                    position: fixed;
+                    bottom: 100px;
+                    right: 30px;
+                    background: rgba(0,0,0,0.7);
+                    color: white;
+                    padding: 8px 15px;
+                    border-radius: 15px;
+                    font-weight: 600;
+                    z-index: 1000;
+                    font-size: 0.9em;
+                `;
+                document.body.appendChild(indicadorTiempo);
+            }
+            
+            indicadorTiempo.textContent = `${minutos.toString().padStart(2, '0')}:${segundos.toString().padStart(2, '0')}`;
+        }
+
+        // Actualizar tiempo cada segundo
+        setInterval(mostrarTiempoPresentacion, 1000);
+
+        // 3. Modo presentador (con notas)
+        let modoPresenta = false;
+        function toggleModoPresenta() {
+            modoPresenta = !modoPresenta;
+            
+            if (modoPresenta) {
+                // Activar modo presentador
+                document.body.style.fontSize = '1.1em';
+                console.log('Modo Presentador activado - Use las flechas del teclado para navegar');
+            } else {
+                // Desactivar modo presentador
+                document.body.style.fontSize = '1em';
+                console.log('Modo Presentador desactivado');
+            }
+        }
+
+        // Tecla 'M' para modo presentador
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'm' || e.key === 'M') {
+                toggleModoPresenta();
+            }
+        });
+
+        // 4. Función para reiniciar presentación
+        function reiniciarPresentacion() {
+            diapositivaActual = 0;
+            mostrarDiapositiva(diapositivaActual);
+            tiempoInicio = Date.now();
+        }
+
+        // Tecla 'R' para reiniciar
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'r' || e.key === 'R') {
+                reiniciarPresentacion();
+            }
+        });
+
+        // Inicializar optimizaciones
+        optimizarParaProyector();
+
+        // Mensaje de ayuda para presentador
+        console.log(`
+        🎯 CONTROLES DE PRESENTACIÓN:
+        ➡️ Flechas o Espacio: Navegar diapositivas
+        🖥️ F11 o Doble clic: Pantalla completa
+        📄 P: Imprimir presentación
+        🎤 M: Modo presentador
+        🔄 R: Reiniciar presentación
+        🏠 Home/End: Primera/Última diapositiva
+        `);
+    </script>
+</body>
+</html>
